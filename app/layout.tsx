@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../styles/globals.css";
 import "../styles/cyberpunk.css";
 import { ReactNode } from "react";
 
