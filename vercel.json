@@ -1,13 +1,5 @@
 {
   "version": 3,
-  "projects": {
-    "frontend": {
-      "rootDirectory": "frontend"
-    },
-    "backend": {
-      "rootDirectory": "backend"
-    }
-  },
   "builds": [
     {
       "src": "frontend/package.json",
