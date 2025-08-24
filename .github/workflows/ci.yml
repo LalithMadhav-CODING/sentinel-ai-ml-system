@@ -2,7 +2,10 @@ name: CI
 
 on:
   push:
-    branches: ["main", "setup-sentinel-project"]
+    branches: 
+      - main
+      - setup-sentinel-project
+      - feature/pr-2-ai-chat   # 🟢 include your active branch
   pull_request:
     branches: ["main"]
 
@@ -18,23 +21,36 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: "npm"   # 🟢 enable dependency caching
 
+      # ---------- FRONTEND ----------
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm install
-
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
+          npm ci
 
       - name: Lint Frontend
         run: |
           cd frontend
           npm run lint --if-present
 
-      - name: Run Build Frontend
+      - name: Build Frontend
         run: |
           cd frontend
           npm run build
+
+      # ---------- BACKEND ----------
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm ci
+
+      - name: Type check Backend
+        run: |
+          cd backend
+          npx tsc --noEmit   # 🟢 ensures TS compiles
+
+      - name: Lint Backend
+        run: |
+          cd backend
+          npm run lint --if-present
