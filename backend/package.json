@@ -8,11 +8,11 @@
     "start": "vercel dev"
   },
   "dependencies": {
-    "@vercel/node": "^3.0.8",
-    "@google/generative-ai": "^0.7.0",
+    "@google/generative-ai": "^0.15.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
+    "@vercel/node": "^3.0.8",
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
   }

@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import * as dotenv from 'dotenv';
 
@@ -18,19 +18,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { message } = req.body;
+    const { message } = req.body as { message?: string };
 
     if (!message || typeof message !== "string") {
       return res.status(400).json({ error: "Message is required" });
     }
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+    // safer handling: await + null checks
     const result = await model.generateContent(message);
-    const response = await result.response;
-    const text = response.text();
+    const response = result?.response;
+    const text = response?.text?.() || "";
 
     return res.status(200).json({ reply: text });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Chat API Error:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
