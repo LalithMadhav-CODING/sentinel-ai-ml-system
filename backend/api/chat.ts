@@ -2,7 +2,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+// load .env only locally (Vercel provides env vars automatically)
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const apiKey = process.env.GEMINI_API_KEY;
 
@@ -26,7 +29,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    // safer handling: await + null checks
     const result = await model.generateContent(message);
     const response = result?.response;
     const text = response?.text?.() || "";
