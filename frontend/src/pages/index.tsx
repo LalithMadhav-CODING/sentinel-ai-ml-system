@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div className="relative w-full h-screen">
       <MatrixBackground />
-      <ChatWindow />
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
+       <ChatWindow />
+      </div>
     </div>
   );
 }
