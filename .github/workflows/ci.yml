@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["main", "setup-sentinel-project"]
+    branches: ["main", "feature/pr-2-ai-chat"]
   pull_request:
     branches: ["main"]
 
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -19,22 +19,22 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install frontend dependencies
+      - name: Install Frontend Dependencies
         run: |
           cd frontend
-          npm install
+          npm ci
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
-
-      - name: Lint Frontend
-        run: |
-          cd frontend
-          npm run lint --if-present
-
-      - name: Run Build Frontend
+      - name: Build Frontend
         run: |
           cd frontend
           npm run build
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm ci
+
+      - name: Typecheck Backend
+        run: |
+          cd backend
+          npx tsc --noEmit

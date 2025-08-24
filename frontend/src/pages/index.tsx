@@ -3,9 +3,11 @@ import ChatWindow from "../components/ChatWindow";
 
 export default function Home() {
   return (
-    <div className="relative w-full h-screen">
+    <div>
       <MatrixBackground />
-      <ChatWindow />
+      <div className="main-container">
+        <ChatWindow />
+      </div>
     </div>
   );
 }

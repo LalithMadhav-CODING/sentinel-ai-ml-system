@@ -1,5 +1,19 @@
 {
   "name": "sentinel-backend",
   "version": "1.0.0",
-  "dependencies": {}
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc --noEmit",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.15.0",
+    "@vercel/node": "^3.0.8",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^19.1.11",
+    "typescript": "^5.3.3"
+  }
 }
