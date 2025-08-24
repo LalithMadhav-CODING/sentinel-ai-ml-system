@@ -1,3 +1,4 @@
+/* Keep your existing body styles for the Matrix theme */
 body {
   margin: 0;
   padding: 0;
@@ -9,4 +10,53 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+/* Add these new styles for the chat window */
+.chat-window-container {
+  width: 90%;
+  max-width: 700px;
+  height: 80vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color: #00ff00;
+}
+
+.messages-area {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-area input {
+  flex-grow: 1;
+  background-color: #000;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 0.5rem;
+  font-family: monospace;
+}
+
+.input-area button {
+  background-color: #000;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.input-area button:hover {
+  background-color: #00ff00;
+  color: #000;
 }
