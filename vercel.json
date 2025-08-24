@@ -1,9 +1,18 @@
 {
-  "version": 2,
+  "version": 3,
+  "projects": {
+    "frontend": {
+      "rootDirectory": "frontend"
+    },
+    "backend": {
+      "rootDirectory": "backend"
+    }
+  },
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": {}
     },
     {
       "src": "backend/api/**/*.ts",
@@ -13,11 +22,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/api/$1.ts"
+      "dest": "/backend/api/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/$1"
+      "dest": "/frontend/$1"
     }
   ]
 }
